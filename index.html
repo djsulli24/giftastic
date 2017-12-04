@@ -20,14 +20,22 @@
         <link rel="stylesheet" href="assets/css/style.css">  
     </head>
     <body>
-        <div id="buttoncontainer">
+        <div class="container">
+            <div class="row">
+                <div id="buttoncontainer"></div>
+            </div>
+            <div class="row">
+                <div id="newbuttonform">
+                    <form>
+                        <div class="form-group">
+                            <label for="gifinput">Add a new button</label>
+                            <input type="text" class="form-control" id="gifinput" placeholder="Enter an emotion here">
+                        </div>
+                        <input class="btn btn-default" type="submit" value="Submit" id="gifsubmit">
+                    </form>
+                </div>
+                <div id="gifcontainer"></div>
+            </div>
         </div>
-        <div id="newbuttonform">
-            <form>
-                <input type="text" id="gifinput">
-                <button id="gifsubmit">Submit</button>
-            </form>
-        </div>
-        <div id="gifcontainer"></div>
     </body>
 </html>

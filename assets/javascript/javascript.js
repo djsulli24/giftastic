@@ -43,7 +43,8 @@ $(document).ready(function() {
         renderButtons: function() {
             this.topics.map(function(value) {
                 $("#buttoncontainer").append(`
-                    <button search-term='` + value + `' class='gifbutton'>` + value + `</button>
+                    <button search-term='` + value + `' 
+                    class='btn btn-default gifbutton'>` + value + `</button>
                 `);
             });
         },
@@ -57,7 +58,8 @@ $(document).ready(function() {
             this.topics.push(value);
             this.buttonStorage();
             $("#buttoncontainer").append(`
-                <button search-term='` + value + `' class='gifbutton'>` + value + `</button>
+                <button search-term='` + value + `' 
+                class='btn btn-default gifbutton'>` + value + `</button>
             `);
         }
     };
