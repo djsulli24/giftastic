@@ -1,3 +1,6 @@
+// Giftastic - This application loads 10 gifs on the page on button click. The user is
+// also able to add new buttons via a text input button.
+
 $(document).ready(function() {
 
     // --------------APPLICATION OBJECT---------------
@@ -11,7 +14,7 @@ $(document).ready(function() {
                 }).done(function(response) {
                     // Empty out the gifs already on the page before adding new ones
                     $("#gifcontainer").empty();
-                    response.data.forEach(function(value, index) {
+                    response.data.map(function(value) {
                         $("#gifcontainer").append(
                             `<p>Rating: ` + value.rating + `</p>
                             <img
@@ -35,7 +38,20 @@ $(document).ready(function() {
                 image.attr("status", "still");
             }
         },
+        buttonArray: ["Angry", "Sad", "Happy", "Conflicted", "Nervous laughter"],
+        renderButtons: function() {
+            this.buttonArray.map(function(value) {
+                $("#buttoncontainer").append(`
+                    <button search-term='` + value + `' class='gifbutton'>` + value + `</button>
+                `);
+            });
+        },
     };
+
+    // ------------PAGELOAD-------------------------
+
+    // Render the buttons on the page
+    giftastic.renderButtons();
 
     // ------------BUTTON CLICK EVENTS--------------
 
