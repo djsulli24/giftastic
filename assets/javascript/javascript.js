@@ -38,20 +38,40 @@ $(document).ready(function() {
                 image.attr("status", "still");
             }
         },
-        buttonArray: ["Angry", "Sad", "Happy", "Conflicted", "Nervous laughter"],
+        topics: ["Angry", "Sad", "Happy", "Conflicted", "Nervous laughter"],
         renderButtons: function() {
-            this.buttonArray.map(function(value) {
+            this.topics.map(function(value) {
                 $("#buttoncontainer").append(`
                     <button search-term='` + value + `' class='gifbutton'>` + value + `</button>
                 `);
             });
         },
+        buttonStorage: function() {
+            sessionStorage.setItem("buttons", JSON.stringify(this.topics));
+        },
+        addButton: function(value) {
+            this.topics.push(value);
+            this.buttonStorage();
+            $("#buttoncontainer").append(`
+                <button search-term='` + value + `' class='gifbutton'>` + value + `</button>
+            `);
+        }
     };
 
     // ------------PAGELOAD-------------------------
 
+    // If user has loaded page before and added buttons, the button
+    // array is updated with the buttons in storage. Else, the default buttons
+    // are written to session storage
+    if (sessionStorage.getItem("buttons")) {
+        giftastic.topics = JSON.parse(sessionStorage.getItem("buttons"));
+    }
+    else {
+        giftastic.buttonStorage();
+    }
     // Render the buttons on the page
     giftastic.renderButtons();
+
 
     // ------------BUTTON CLICK EVENTS--------------
 
@@ -64,6 +84,13 @@ $(document).ready(function() {
     // Click a gif to toggle between animated and still
     $("#gifcontainer").on("click", ".gifinsert", function() {
         giftastic.toggle($(this));
+    });
+
+    // Click the submit button to add a new gif button to the page
+    $("#gifsubmit").click(function(event) {
+        event.preventDefault();
+        giftastic.addButton($("#gifinput").val());
+        $("#gifinput").val("");
     });
 
 });
