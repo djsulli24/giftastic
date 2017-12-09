@@ -1,0 +1,14 @@
+.gifblock {
+    display: inline-block;
+    overflow: auto;
+    height: auto;
+    margin: 0 10px;
+}
+
+.gifinsert {
+    border: 3px solid black;
+}
+
+.gifcontainer {
+    text-align: center;
+}

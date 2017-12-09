@@ -14,15 +14,17 @@ $(document).ready(function() {
                     $("#gifcontainer").empty();
                     // For each of the 10 gifs returned, append to the gif container dif
                     response.data.map(function(value) {
-                        $("#gifcontainer").append(
-                            `<p>Rating: ` + value.rating.toUpperCase() + `</p>
-                            <img
-                            class='img-responsive gifinsert'
-                            data-animate='` + value.images.fixed_width.url + `'
-                            data-still='` + value.images.fixed_width_still.url + `'
-                            status='still' 
-                            src='` + value.images.fixed_width_still.url + `'/>`
-                        );
+                        $("#gifcontainer").append(`
+                            <div class='gifblock'>
+                                <p class='clearfix rating'>Rating: ` + value.rating.toUpperCase() + `</p>
+                                <img
+                                class='img-responsive gifinsert'
+                                data-animate='` + value.images.fixed_width.url + `'
+                                data-still='` + value.images.fixed_width_still.url + `'
+                                status='still' 
+                                src='` + value.images.fixed_width_still.url + `'/>
+                            </div>
+                        `);
                     });
                 }
             );
